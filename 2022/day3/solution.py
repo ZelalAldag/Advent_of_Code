@@ -9,18 +9,23 @@ def read_day3_input(input_file_name) -> list:
 
 
 def calculate_priority(content: tuple) -> int:
-    alphabet = {value: index + 1 for index, value in enumerate(string.ascii_letters)}
+    alphabet = {
+        value: index + 1 for index, value in enumerate(string.ascii_letters)
+    }
 
     # find common letter between contents
     common_letter = list(
-        set(content[0]).intersection(*[set(content[i]) for i in range(1, len(content))])
+        set(content[0]).intersection(
+            *[set(content[i]) for i in range(1, len(content))]
+        )
     )[0]
     return alphabet[common_letter]
 
 
 # PART 1
 input_contents = [
-    (i[: (len(i) // 2)], i[(len(i) // 2) :]) for i in read_day3_input("input.txt")
+    (i[: (len(i) // 2)], i[(len(i) // 2) :])
+    for i in read_day3_input("input.txt")
 ]
 priorities = list(map(calculate_priority, input_contents))
 
